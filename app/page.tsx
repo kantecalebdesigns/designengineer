@@ -1,65 +1,174 @@
-import Image from "next/image";
+"use client";
+
+import { motion } from "framer-motion";
+import { Navbar } from "@/components/navbar";
+import { ProjectCard } from "@/components/project-card";
+import { SectionWrapper } from "@/components/section-wrapper";
+import { Footer } from "@/components/footer";
+import { Marquee } from "@/components/marquee";
+import TextType from "@/components/TextType";
+import { projects } from "@/data/projects";
 
 export default function Home() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+    <>
+      <Navbar />
+
+      {/* Hero */}
+      <section className="flex min-h-[75vh] flex-col items-center justify-center px-6 pt-32 md:px-12 md:pt-36">
+        <div className="mx-auto w-full max-w-xl lg:max-w-2xl">
+          <motion.h1
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+            className="font-[family-name:var(--font-serif)] text-3xl font-bold tracking-tight text-[#f5f5f5] md:text-4xl lg:text-5xl"
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
+            <span className="mb-6 block h-12 w-12 rounded-full bg-[#161616] md:h-14 md:w-14" />
+            Design Engineer<span className="text-[#6aafff]">.</span>
+          </motion.h1>
+          <motion.p
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{
+              duration: 1,
+              delay: 0.15,
+              ease: [0.16, 1, 0.3, 1],
+            }}
+            className="mt-6 max-w-lg text-base leading-relaxed text-[#888] md:text-lg"
+          >
+            I am a product designer who enjoys not only designing but
+            bringing those designs to life.
+          </motion.p>
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{
+              duration: 1,
+              delay: 0.3,
+              ease: [0.16, 1, 0.3, 1],
+            }}
+            className="mt-8 flex items-center gap-3"
+          >
+            <a
+              href="mailto:hello@example.com"
+              className="rounded-lg bg-[#6aafff] px-6 py-2.5 text-sm font-medium text-[#0a0a0a] transition-opacity duration-200 hover:opacity-85"
+            >
+              Let&apos;s Chat
+            </a>
+            <a
+              href="/resume.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="rounded-lg border border-[#222] px-6 py-2.5 text-sm font-medium text-[#ccc] transition-colors duration-200 hover:border-[#6aafff40] hover:text-[#6aafff]"
+            >
+              Download Resume
+            </a>
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{
+              duration: 1,
+              delay: 0.45,
+              ease: [0.16, 1, 0.3, 1],
+            }}
+            className="mt-5 max-w-md border-t border-[#1a1a1a] pt-4"
+          >
+            <p className="text-sm font-light leading-relaxed text-[#bbb]">
+              Quiet interfaces, smooth motion, sharp typography.
+            </p>
+            <p className="mt-1 text-sm font-light leading-relaxed text-[#999]">
+              Design systems, spatial UI, and software that feels intentional.
+            </p>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Marquee */}
+      <Marquee />
+
+      {/* Projects */}
+      <SectionWrapper id="projects" className="py-24">
+        <div className="mx-auto w-full max-w-3xl">
+          <h2 className="mb-16 text-base font-semibold uppercase tracking-widest text-[#ccc]">
+            <TextType
+              texts={["Selected Work", "Featured Projects", "Case Studies"]}
+              typingSpeed={75}
+              deletingSpeed={50}
+              pauseDuration={1500}
+              showCursor
+              cursorCharacter="_"
+              cursorBlinkDuration={0.5}
             />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+          </h2>
+          <div className="flex flex-col gap-20">
+            {projects.map((project, i) => (
+              <ProjectCard key={project.slug} project={project} index={i} />
+            ))}
+          </div>
         </div>
-      </main>
-    </div>
+      </SectionWrapper>
+
+      {/* About */}
+      <SectionWrapper id="about" className="py-32">
+        <div className="mx-auto w-full max-w-3xl">
+          <h2 className="mb-16 text-base font-semibold uppercase tracking-widest text-[#ccc]">
+            <TextType
+              texts={["About Me", "Who I Am", "My Story"]}
+              typingSpeed={75}
+              deletingSpeed={50}
+              pauseDuration={1500}
+              showCursor
+              cursorCharacter="_"
+              cursorBlinkDuration={0.5}
+            />
+          </h2>
+          <div className="mb-20 flex flex-col gap-10 md:flex-row md:items-stretch md:gap-12">
+            <h3 className="flex-1 font-[family-name:var(--font-serif)] text-2xl font-bold leading-snug text-[#f5f5f5] md:text-3xl lg:text-4xl">
+              I am a product designer who enjoys not only designing but
+              bringing those designs to <span className="italic text-[#6aafff]">life</span>.
+            </h3>
+            <div className="w-full md:w-1/2">
+              <div className="relative h-full min-h-[240px] overflow-hidden rounded-2xl bg-[#111]">
+                {/* Replace src with your photo */}
+                <img
+                  src="/projects/profile.jpg"
+                  alt="Portrait"
+                  className="h-full w-full object-cover"
+                />
+              </div>
+            </div>
+          </div>
+          <div className="mt-16">
+            <h4 className="mb-4 text-sm font-medium uppercase tracking-widest text-[#555]">
+              Technologies
+            </h4>
+            <div className="flex flex-wrap gap-2">
+              {[
+                "UI Design",
+                "Interaction Design",
+                "Design Systems",
+                "React",
+                "Next.js",
+                "TypeScript",
+                "Tailwind CSS",
+                "Framer Motion",
+                "Figma",
+                "Prototyping",
+              ].map((skill) => (
+                <span
+                  key={skill}
+                  className="rounded-full border border-[#222] px-3 py-1.5 text-sm text-[#888] transition-colors duration-300 hover:border-[#6aafff30] hover:text-[#6aafff]"
+                >
+                  {skill}
+                </span>
+              ))}
+            </div>
+          </div>
+        </div>
+      </SectionWrapper>
+
+      <Footer />
+    </>
   );
 }
