@@ -2,6 +2,7 @@
 
 import { useParams } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { projects } from "@/data/projects";
 import { notFound } from "next/navigation";
@@ -33,7 +34,7 @@ export default function ProjectPage() {
           <motion.h1
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, ease: [0.25, 0.1, 0.25, 1] }}
+            transition={{ duration: 0.35, ease: [0.25, 0.1, 0.25, 1] }}
             className="font-[family-name:var(--font-serif)] text-3xl font-bold tracking-tight text-[#f5f5f5] md:text-5xl"
           >
             {project.title}
@@ -41,7 +42,7 @@ export default function ProjectPage() {
           <motion.p
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.1, ease: [0.25, 0.1, 0.25, 1] }}
+            transition={{ duration: 0.35, delay: 0.05, ease: [0.25, 0.1, 0.25, 1] }}
             className="mt-4 max-w-lg text-lg text-[#888]"
           >
             {project.description}
@@ -49,7 +50,7 @@ export default function ProjectPage() {
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 0.7, delay: 0.2 }}
+            transition={{ duration: 0.35, delay: 0.1 }}
             className="mt-6 flex flex-wrap gap-2"
           >
             {project.tech.map((t) => (
@@ -68,18 +69,19 @@ export default function ProjectPage() {
       <motion.div
         initial={{ opacity: 0, y: 32 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, delay: 0.2, ease: [0.25, 0.1, 0.25, 1] }}
+        transition={{ duration: 0.4, delay: 0.1, ease: [0.25, 0.1, 0.25, 1] }}
         className="px-6 md:px-12"
       >
         <div className="mx-auto max-w-3xl overflow-hidden rounded-lg bg-[#111]">
           <div className="relative aspect-[16/9]">
-            <div
-              className="absolute inset-0 bg-[#161616]"
-              style={{
-                backgroundImage: `url(${project.hero})`,
-                backgroundSize: "cover",
-                backgroundPosition: "center",
-              }}
+            <Image
+              src={project.hero}
+              alt={project.title}
+              fill
+              sizes="100vw"
+              className="bg-[#161616] object-cover"
+              quality={100}
+              priority
             />
             <div className="absolute inset-0 bg-gradient-to-br from-[#1a1a1a] to-[#0d0d0d] opacity-50" />
             <div className="absolute inset-0 flex items-center justify-center">
@@ -93,13 +95,13 @@ export default function ProjectPage() {
 
       {/* Content sections */}
       <div className="mx-auto max-w-3xl px-6 py-24 md:px-12">
-        <ContentBlock title="Overview" delay={0.1}>
+        <ContentBlock title="Overview" delay={0.05}>
           {project.overview}
         </ContentBlock>
-        <ContentBlock title="Problem" delay={0.2}>
+        <ContentBlock title="Problem" delay={0.1}>
           {project.problem}
         </ContentBlock>
-        <ContentBlock title="Solution" delay={0.3}>
+        <ContentBlock title="Solution" delay={0.15}>
           {project.solution}
         </ContentBlock>
       </div>
@@ -110,7 +112,7 @@ export default function ProjectPage() {
           initial={{ opacity: 0, y: 32 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.7, ease: [0.25, 0.1, 0.25, 1] }}
+          transition={{ duration: 0.35, ease: [0.25, 0.1, 0.25, 1] }}
           className="px-6 pb-24 md:px-12"
         >
           <div className="mx-auto grid max-w-3xl gap-4 md:grid-cols-2">
@@ -120,13 +122,14 @@ export default function ProjectPage() {
                 className="overflow-hidden rounded-lg bg-[#111]"
               >
                 <div className="relative aspect-[4/3]">
-                  <div
-                    className="absolute inset-0 bg-[#161616]"
-                    style={{
-                      backgroundImage: `url(${img})`,
-                      backgroundSize: "cover",
-                      backgroundPosition: "center",
-                    }}
+                  <Image
+                    src={img}
+                    alt={`${project.title} screenshot ${i + 1}`}
+                    fill
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                    className="bg-[#161616] object-cover"
+                    quality={100}
+                    loading="lazy"
                   />
                   <div className="absolute inset-0 bg-gradient-to-br from-[#1a1a1a] to-[#0d0d0d] opacity-40" />
                 </div>
@@ -165,7 +168,7 @@ function ContentBlock({
       initial={{ opacity: 0, y: 24 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-60px" }}
-      transition={{ duration: 0.6, delay, ease: [0.25, 0.1, 0.25, 1] }}
+      transition={{ duration: 0.3, delay, ease: [0.25, 0.1, 0.25, 1] }}
       className="mb-16"
     >
       <h2 className="mb-4 text-sm font-medium uppercase tracking-widest text-[#555]">

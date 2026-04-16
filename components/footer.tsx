@@ -18,7 +18,7 @@ export function Footer() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
           className="text-sm font-medium uppercase tracking-widest text-[#555]"
         >
           Get in touch
@@ -27,7 +27,7 @@ export function Footer() {
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: 0.4, delay: 0.05, ease: [0.16, 1, 0.3, 1] }}
           className="mt-6 font-[family-name:var(--font-serif)] text-3xl font-bold leading-tight text-[#f5f5f5] md:text-5xl lg:text-6xl"
         >
           Let&apos;s work
@@ -39,7 +39,7 @@ export function Footer() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: 0.4, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
           className="mt-8 inline-block rounded-lg bg-[#6aafff] px-6 py-2.5 text-sm font-medium text-[#0a0a0a] transition-opacity duration-200 hover:opacity-85"
         >
           Say Hello
@@ -50,7 +50,7 @@ export function Footer() {
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.8, delay: 0.3 }}
+          transition={{ duration: 0.4, delay: 0.15 }}
           className="mt-16 flex flex-wrap gap-6 border-t border-[#1a1a1a] pt-8"
         >
           {socials.map((s) => (

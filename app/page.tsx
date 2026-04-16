@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
 import { Navbar } from "@/components/navbar";
 import { ProjectCard } from "@/components/project-card";
 import { SectionWrapper } from "@/components/section-wrapper";
@@ -20,7 +21,7 @@ export default function Home() {
           <motion.h1
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
             className="font-[family-name:var(--font-serif)] text-3xl font-bold tracking-tight text-[#f5f5f5] md:text-4xl lg:text-5xl"
           >
             <span className="mb-6 block h-12 w-12 rounded-full bg-[#161616] md:h-14 md:w-14" />
@@ -30,8 +31,8 @@ export default function Home() {
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{
-              duration: 1,
-              delay: 0.15,
+              duration: 0.5,
+              delay: 0.08,
               ease: [0.16, 1, 0.3, 1],
             }}
             className="mt-6 max-w-lg text-base leading-relaxed text-[#888] md:text-lg"
@@ -43,8 +44,8 @@ export default function Home() {
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{
-              duration: 1,
-              delay: 0.3,
+              duration: 0.5,
+              delay: 0.15,
               ease: [0.16, 1, 0.3, 1],
             }}
             className="mt-8 flex items-center gap-3"
@@ -68,8 +69,8 @@ export default function Home() {
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{
-              duration: 1,
-              delay: 0.45,
+              duration: 0.5,
+              delay: 0.22,
               ease: [0.16, 1, 0.3, 1],
             }}
             className="mt-5 max-w-md border-t border-[#1a1a1a] pt-4"
@@ -131,10 +132,14 @@ export default function Home() {
             <div className="w-full md:w-1/2">
               <div className="relative h-full min-h-[240px] overflow-hidden rounded-2xl bg-[#111]">
                 {/* Replace src with your photo */}
-                <img
+                <Image
                   src="/projects/profile.jpg"
                   alt="Portrait"
-                  className="h-full w-full object-cover"
+                  fill
+                  sizes="100vw"
+                  className="object-cover"
+                  quality={100}
+                  loading="lazy"
                 />
               </div>
             </div>

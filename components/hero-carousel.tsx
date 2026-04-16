@@ -58,7 +58,7 @@ export function HeroCarousel() {
             initial="enter"
             animate="center"
             exit="exit"
-            transition={{ duration: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
+            transition={{ duration: 0.25, ease: [0.25, 0.1, 0.25, 1] }}
             drag="x"
             dragConstraints={{ left: 0, right: 0 }}
             dragElastic={0.12}
