@@ -2,7 +2,6 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
-import Image from "next/image";
 import { useRef, useState } from "react";
 import type { Project } from "@/data/projects";
 
@@ -51,8 +50,8 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-80px" }}
       transition={{
-        duration: 0.35,
-        delay: index * 0.05,
+        duration: 0.7,
+        delay: index * 0.1,
         ease: [0.25, 0.1, 0.25, 1],
       }}
     >
@@ -65,22 +64,21 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
           style={{
             transform: transform || "perspective(800px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)",
             transition: transform
-              ? "transform 0.08s ease-out"
-              : "transform 0.2s ease-out",
+              ? "transform 0.1s ease-out"
+              : "transform 0.4s ease-out",
           }}
         >
           <div
             className="relative aspect-[16/10] overflow-hidden"
             style={{ clipPath: mask }}
           >
-            <Image
-              src={project.hero}
-              alt={project.title}
-              fill
-              sizes="100vw"
-              className="bg-[#161616] object-cover transition-transform duration-300 ease-out group-hover:scale-[1.05]"
-              quality={100}
-              loading="lazy"
+            <div
+              className="absolute inset-0 bg-[#161616] transition-transform duration-700 ease-out group-hover:scale-[1.05]"
+              style={{
+                backgroundImage: `url(${project.hero})`,
+                backgroundSize: "cover",
+                backgroundPosition: "center",
+              }}
             />
             <div className="absolute inset-0 flex items-center justify-center">
               <span className="text-lg font-medium text-[#333] select-none">
@@ -88,7 +86,7 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
               </span>
             </div>
             {/* Blue accent line on hover */}
-            <div className="absolute bottom-0 left-0 h-[2px] w-0 bg-[#6aafff] transition-all duration-250 group-hover:w-full" />
+            <div className="absolute bottom-0 left-0 h-[2px] w-0 bg-[#6aafff] transition-all duration-500 group-hover:w-full" />
           </div>
         </div>
         <div className="mt-6 flex flex-col gap-3 md:flex-row md:items-start md:justify-between">

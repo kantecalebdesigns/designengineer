@@ -2,17 +2,16 @@
 
 import { useRef, useEffect, useState, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import Image from "next/image";
 
 const screens = [
-  { label: "Dashboard", image: "/screens/dashboard.jpg" },
-  { label: "Mobile App", image: "/screens/mobile-app.jpg" },
-  { label: "Landing Page", image: "/screens/landing-page.jpg" },
-  { label: "Design System", image: "/screens/design-system.jpg" },
-  { label: "E-Commerce", image: "/screens/ecommerce.jpg" },
-  { label: "Analytics", image: "/screens/analytics.jpg" },
-  { label: "Onboarding", image: "/screens/onboarding.jpg" },
-  { label: "Settings", image: "/screens/settings.jpg" },
+  { label: "Dashboard", image: "https://files.catbox.moe/tyy2ed.png" },
+  { label: "Mobile App", image: "https://files.catbox.moe/l14spk.png" },
+  { label: "Landing Page", image: "https://files.catbox.moe/xr1syg.png" },
+  { label: "Design System", image: "https://files.catbox.moe/x8npa8.png" },
+  { label: "E-Commerce", image: "https://files.catbox.moe/zoh8qj.png" },
+  { label: "Analytics", image: "https://files.catbox.moe/o6rshg.png" },
+  { label: "Onboarding", image: "https://files.catbox.moe/yumjk7.png" },
+  { label: "Settings", image: "https://files.catbox.moe/iw6gpm.png" },
 ];
 
 export function Marquee() {
@@ -24,19 +23,17 @@ export function Marquee() {
     if (!el) return;
 
     let animationId: number;
-    let translateX = 0;
-    const speed = 0.6; // pixels per frame
+    let speed = 1;
 
     const scroll = () => {
-      translateX -= speed;
+      el.scrollLeft += speed;
 
-      // When we've moved past one full set, jump back seamlessly
-      const oneThird = el.scrollWidth / 3;
-      if (Math.abs(translateX) >= oneThird) {
-        translateX += oneThird;
+      // When we've scrolled past the first set, jump back seamlessly
+      const halfWidth = el.scrollWidth / 3;
+      if (el.scrollLeft >= halfWidth) {
+        el.scrollLeft -= halfWidth;
       }
 
-      el.style.transform = `translate3d(${translateX}px, 0, 0)`;
       animationId = requestAnimationFrame(scroll);
     };
 
@@ -61,26 +58,24 @@ export function Marquee() {
       <div className="overflow-hidden py-32">
         <div
           ref={scrollRef}
-          className="flex gap-4"
-          style={{ willChange: "transform", backfaceVisibility: "hidden" }}
+          className="flex gap-4 overflow-hidden"
+          style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
         >
           {items.map((screen, i) => (
-            <div
+            <motion.div
               key={i}
-              className="relative h-48 w-80 flex-shrink-0 overflow-hidden rounded-lg bg-[#111] transition-transform duration-200 ease-out hover:z-10 hover:scale-[1.06] md:h-64 md:w-[420px]"
+              className="relative h-48 w-80 flex-shrink-0 overflow-hidden rounded-lg bg-[#111] md:h-64 md:w-[420px]"
+              whileHover={{ scale: 1.08, zIndex: 10, marginInline: "16px" }}
+              transition={{ type: "spring", stiffness: 300, damping: 20 }}
               style={{ cursor: screen.image ? "pointer" : "default" }}
               onClick={() => handleClick(screen.image)}
             >
               {screen.image ? (
-                <Image
+                <img
                   src={screen.image}
                   alt={screen.label}
-                  fill
-                  sizes="(max-width: 768px) 100vw, 50vw"
-                  className="object-cover"
+                  className="absolute inset-0 h-full w-full object-cover"
                   draggable={false}
-                  loading={i < 8 ? "eager" : "lazy"}
-                  quality={100}
                 />
               ) : (
                 <>
@@ -90,7 +85,7 @@ export function Marquee() {
                   </span>
                 </>
               )}
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>
@@ -102,29 +97,20 @@ export function Marquee() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.15 }}
+            transition={{ duration: 0.25 }}
             className="fixed inset-0 z-50 flex items-center justify-center bg-[#0a0a0a]/90 backdrop-blur-md"
             onClick={closePreview}
           >
-            <motion.div
+            <motion.img
+              src={selectedImage}
+              alt="Preview"
               initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.9, opacity: 0 }}
-              transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
-              className="relative max-h-[85vh] max-w-[90vw] aspect-[16/10]"
-              style={{ width: "min(90vw, 1200px)" }}
+              transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+              className="max-h-[85vh] max-w-[90vw] rounded-xl object-contain"
               onClick={(e) => e.stopPropagation()}
-            >
-              <Image
-                src={selectedImage}
-                alt="Preview"
-                fill
-                sizes="90vw"
-                className="rounded-xl object-contain"
-                quality={100}
-                priority
-              />
-            </motion.div>
+            />
             <button
               onClick={closePreview}
               className="absolute right-6 top-6 text-sm text-[#888] transition-colors hover:text-[#f5f5f5]"
