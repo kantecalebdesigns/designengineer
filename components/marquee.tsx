@@ -36,14 +36,13 @@ function MarqueeImage({ src, alt }: { src: string; alt: string }) {
 }
 
 const screens = [
-  { label: "Dashboard", image: "/screens/dashboard.jpg" },
-  { label: "Mobile App", image: "/screens/mobile-app.jpg" },
-  { label: "Landing Page", image: "/screens/landing-page.jpg" },
-  { label: "Design System", image: "/screens/design-system.jpg" },
-  { label: "E-Commerce", image: "/screens/ecommerce.jpg" },
-  { label: "Analytics", image: "/screens/analytics.jpg" },
-  { label: "Onboarding", image: "/screens/onboarding.jpg" },
-  { label: "Settings", image: "/screens/settings.jpg" },
+  { label: "Mockup", image: "/screens/mockup-wrap.jpg" },
+  { label: "Lightbox", image: "/screens/lightbox-scroll.jpg" },
+  { label: "Mobile", image: "/screens/mobile-scroll.jpg" },
+  { label: "Scroll", image: "/screens/scroll-4.jpg" },
+  { label: "Mobile", image: "/screens/mobile-scroll2.jpg" },
+  { label: "Scroll", image: "/screens/scroll-5.jpg" },
+  { label: "Scroll", image: "/screens/scroll-6.jpg" },
 ];
 
 export function Marquee() {
