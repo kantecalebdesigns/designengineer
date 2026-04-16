@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Instrument_Sans, Libre_Caslon_Text } from "next/font/google";
 import "./globals.css";
+import { Preloader } from "@/components/preloader";
 
 const geist = Geist({
   variable: "--font-geist-sans",
@@ -30,7 +31,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${geist.variable} ${instrumentSans.variable} ${libreCaslon.variable} antialiased`}>{children}</body>
+      <body className={`${geist.variable} ${instrumentSans.variable} ${libreCaslon.variable} antialiased`}>
+        <Preloader />
+        {children}
+      </body>
     </html>
   );
 }

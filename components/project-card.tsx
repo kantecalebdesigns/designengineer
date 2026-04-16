@@ -72,6 +72,7 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
             className="relative aspect-[16/10] overflow-hidden"
             style={{ clipPath: mask }}
           >
+            <div className="absolute inset-0 animate-pulse bg-gradient-to-br from-[#161616] to-[#0d0d0d]" />
             <div
               className="absolute inset-0 bg-[#161616] transition-transform duration-700 ease-out group-hover:scale-[1.05]"
               style={{

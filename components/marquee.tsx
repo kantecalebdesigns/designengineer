@@ -3,15 +3,47 @@
 import { useRef, useEffect, useState, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
+function MarqueeImage({ src, alt }: { src: string; alt: string }) {
+  const [loaded, setLoaded] = useState(false);
+
+  // Callback ref catches images that finished loading before React attached onLoad
+  // (common with cached images / soft navigations).
+  const imgRefCallback = useCallback((node: HTMLImageElement | null) => {
+    if (node?.complete && node.naturalWidth > 0) {
+      setLoaded(true);
+    }
+  }, []);
+
+  return (
+    <>
+      {!loaded && (
+        <div className="absolute inset-0 animate-pulse bg-gradient-to-br from-[#161616] to-[#0d0d0d]" />
+      )}
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        ref={imgRefCallback}
+        src={src}
+        alt={alt}
+        onLoad={() => setLoaded(true)}
+        onError={() => setLoaded(true)}
+        className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-300 ${
+          loaded ? "opacity-100" : "opacity-0"
+        }`}
+        draggable={false}
+      />
+    </>
+  );
+}
+
 const screens = [
-  { label: "Dashboard", image: "https://files.catbox.moe/tyy2ed.png" },
-  { label: "Mobile App", image: "https://files.catbox.moe/l14spk.png" },
-  { label: "Landing Page", image: "https://files.catbox.moe/xr1syg.png" },
-  { label: "Design System", image: "https://files.catbox.moe/x8npa8.png" },
-  { label: "E-Commerce", image: "https://files.catbox.moe/zoh8qj.png" },
-  { label: "Analytics", image: "https://files.catbox.moe/o6rshg.png" },
-  { label: "Onboarding", image: "https://files.catbox.moe/yumjk7.png" },
-  { label: "Settings", image: "https://files.catbox.moe/iw6gpm.png" },
+  { label: "Dashboard", image: "/screens/dashboard.jpg" },
+  { label: "Mobile App", image: "/screens/mobile-app.jpg" },
+  { label: "Landing Page", image: "/screens/landing-page.jpg" },
+  { label: "Design System", image: "/screens/design-system.jpg" },
+  { label: "E-Commerce", image: "/screens/ecommerce.jpg" },
+  { label: "Analytics", image: "/screens/analytics.jpg" },
+  { label: "Onboarding", image: "/screens/onboarding.jpg" },
+  { label: "Settings", image: "/screens/settings.jpg" },
 ];
 
 export function Marquee() {
@@ -23,7 +55,7 @@ export function Marquee() {
     if (!el) return;
 
     let animationId: number;
-    let speed = 1;
+    const speed = 1;
 
     const scroll = () => {
       el.scrollLeft += speed;
@@ -71,12 +103,7 @@ export function Marquee() {
               onClick={() => handleClick(screen.image)}
             >
               {screen.image ? (
-                <img
-                  src={screen.image}
-                  alt={screen.label}
-                  className="absolute inset-0 h-full w-full object-cover"
-                  draggable={false}
-                />
+                <MarqueeImage src={screen.image} alt={screen.label} />
               ) : (
                 <>
                   <div className="absolute inset-0 bg-gradient-to-br from-[#151515] to-[#0b0b0b]" />
