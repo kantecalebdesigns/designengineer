@@ -1,54 +1,75 @@
 export interface Project {
   slug: string;
   title: string;
+  category: string;
+  year: string;
   description: string;
   tech: string[];
   hero: string;
-  overview: string;
+  heroAspect?: string;
+  cardImage?: string;
+  overview?: string;
   problem: string;
+  research?: string;
   solution: string;
   images?: string[];
 }
 
 export const projects: Project[] = [
   {
-    slug: "design-system",
-    title: "Design System",
+    slug: "codey",
+    title: "Codey",
+    category: "Kids App",
+    year: "2025",
     description:
-      "A comprehensive component library built for consistency and speed across product teams.",
-    tech: ["React", "TypeScript", "Storybook", "Figma"],
-    hero: "/projects/design-system.jpg",
-    overview:
-      "A unified design system that bridges design and engineering, providing a shared language of components, tokens, and patterns.",
+      "A coding app built from the ground up for children aged 3–6 — where play teaches logic, and pre-readers can navigate on their own.",
+    tech: ["Figma", "Prototyping", "User Research"],
+    hero: "/screens/codey/Onboarding%20Codey.webp",
+    heroAspect: "2048 / 1869",
+    cardImage: "/screens/codey/codey%20mockup%20main%20page.png",
     problem:
-      "Product teams were building inconsistent interfaces with duplicated effort. There was no single source of truth for UI components.",
+      "Most coding apps for young children aren't actually built for young children. Tools like Scratch and Tynker introduce too much complexity too soon — overwhelming kids aged 3–6 who are still learning to read, let alone parse logic blocks. The result: kids lose interest fast, and parents give up.",
+    research:
+      "I ran a competitor analysis across the leading kids' coding platforms, looking at onboarding flows, lesson structure, visual language, and reward systems. The pattern was clear — these apps were designed for older kids (7+) and retrofitted for younger ones. Nothing felt genuinely built for a 3–6 year-old's attention span, motor skills, or comprehension level.",
     solution:
-      "Built a modular component library with strict design tokens, automated visual regression testing, and comprehensive documentation that reduced UI development time significantly.",
+      "I designed Codey around a Duolingo-style learning model — bite-sized lessons, instant feedback, streaks, and a clear sense of progression. Each \"level\" teaches a single concept through play, not instruction. The interface is touch-friendly, icon-led, and stripped of any text-heavy elements so pre-readers can navigate independently. The result is an app that feels like a game first and a lesson second — exactly how kids that age actually learn.",
     images: [
-      "/projects/design-system-1.jpg",
-      "/projects/design-system-2.jpg",
+      "/screens/codey/Codey%20Design%20Portfolio.webp",
+      "/screens/codey/Codey%201.webp",
+      "/screens/codey/Codey%20Design%20Portfolio%20%281%29.webp",
     ],
   },
   {
-    slug: "dashboard-analytics",
-    title: "Dashboard Analytics",
+    slug: "servease",
+    title: "Servease",
+    category: "On-Demand Service Booking App",
+    year: "2025",
     description:
-      "A real-time analytics dashboard with data visualization and intuitive filtering.",
-    tech: ["Next.js", "D3.js", "PostgreSQL", "Tailwind"],
-    hero: "/projects/dashboard.jpg",
-    overview:
-      "An analytics platform that transforms complex datasets into clear, actionable insights through thoughtful visualization design.",
+      "An on-demand booking app that connects users with trusted local service providers — plumbers, electricians, stylists — in just three steps.",
+    tech: ["Figma", "Prototyping", "User Research"],
+    hero: "/screens/Servease/Home%20Design%20Portfolio.webp",
+    heroAspect: "2048 / 1937",
+    cardImage: "/screens/Servease/Servease%20Design%20Portfolio%20%281%29.webp",
     problem:
-      "Existing analytics tools were cluttered and overwhelming, making it difficult for teams to extract meaningful insights quickly.",
+      "Finding reliable service providers — plumbers, electricians, stylists — still relies on word-of-mouth or offline hustle. It's slow, inconsistent, and out of step with how digital-first users expect to get things done.",
+    research:
+      "I studied how ride-hailing apps like InDrive solved a similar matching problem — connecting users to nearby providers in real time with minimal friction. The takeaway: people don't want a directory, they want a match. The booking experience needed to collapse into a few clear steps, with enough live feedback to build trust before money or time was committed.",
     solution:
-      "Designed and built a minimal dashboard interface with progressive disclosure, real-time updates, and carefully crafted charts that communicate data at a glance.",
-    images: ["/projects/dashboard-1.jpg", "/projects/dashboard-2.jpg"],
+      "I designed Servease around a three-step flow: Request → Match → Confirm. Users describe what they need through a flexible request form and see nearby available providers instantly. A live matching screen with real-time status updates removes the anxiety of \"did this actually go through?\" On the back end, I designed an admin dashboard for approving providers, managing categories, and tracking requests. Stakeholders greenlit the product for development after the first review — citing the flow's clarity and visual polish.",
+    images: [
+      "/screens/Servease/Home%20Design%20Portfolio.webp",
+      "/screens/Servease/Cat%20Design%20Portfolio.webp",
+      "/screens/Servease/Admin%20Dashboard%20-%20Design%20Portfolio.webp",
+      "/screens/Servease/Dispute%20Resolution%20-%20Design%20Portfolio.webp",
+    ],
   },
   {
     slug: "ecommerce-experience",
     title: "E-Commerce Experience",
+    category: "Consumer",
+    year: "2024",
     description:
-      "A premium shopping experience focused on product photography and seamless checkout.",
+      "A premium shopping experience where the product is the hero and every interaction feels effortless.",
     tech: ["Next.js", "Stripe", "Framer Motion", "Sanity"],
     hero: "/projects/ecommerce.jpg",
     overview:
@@ -62,8 +83,10 @@ export const projects: Project[] = [
   {
     slug: "brand-identity",
     title: "Brand Identity Platform",
+    category: "Brand",
+    year: "2023",
     description:
-      "A digital brand guideline tool that keeps teams aligned on visual identity.",
+      "A living brand platform that keeps teams aligned on visual identity across every touchpoint.",
     tech: ["React", "Node.js", "AWS S3", "Figma API"],
     hero: "/projects/brand.jpg",
     overview:

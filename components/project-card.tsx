@@ -62,7 +62,9 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
           onMouseMove={handleMouseMove}
           onMouseLeave={handleMouseLeave}
           style={{
-            transform: transform || "perspective(800px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)",
+            transform:
+              transform ||
+              "perspective(800px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)",
             transition: transform
               ? "transform 0.1s ease-out"
               : "transform 0.4s ease-out",
@@ -76,16 +78,11 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
             <div
               className="absolute inset-0 bg-[#161616] transition-transform duration-700 ease-out group-hover:scale-[1.05]"
               style={{
-                backgroundImage: `url(${project.hero})`,
+                backgroundImage: `url(${project.cardImage ?? project.hero})`,
                 backgroundSize: "cover",
                 backgroundPosition: "center",
               }}
             />
-            <div className="absolute inset-0 flex items-center justify-center">
-              <span className="text-lg font-medium text-[#333] select-none">
-                {project.title}
-              </span>
-            </div>
             {/* Blue accent line on hover */}
             <div className="absolute bottom-0 left-0 h-[2px] w-0 bg-[#6aafff] transition-all duration-500 group-hover:w-full" />
           </div>
