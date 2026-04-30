@@ -64,21 +64,28 @@ export const projects: Project[] = [
     ],
   },
   {
-    slug: "ecommerce-experience",
-    title: "E-Commerce Experience",
-    category: "Consumer",
-    year: "2024",
+    slug: "wallify",
+    title: "Wallify",
+    category: "Wallpaper App · Exploration",
+    year: "2025",
     description:
-      "A premium shopping experience where the product is the hero and every interaction feels effortless.",
-    tech: ["Next.js", "Stripe", "Framer Motion", "Sanity"],
-    hero: "/projects/ecommerce.jpg",
+      "A small exploration into a calm, minimal wallpaper app — where the visuals take the spotlight and the interface gets out of the way.",
+    tech: ["Figma", "Prototyping", "UI Exploration"],
+    hero: "/screens/Wallify/Wallify%20Home%20Page%20Design%20Portfolio.webp",
+    heroAspect: "1749 / 1413",
+    cardImage: "/screens/Wallify/Wallify%20Background.webp",
     overview:
-      "A high-end e-commerce platform where the product is the hero. Every interaction is designed to feel effortless and premium.",
+      "Wallify was a personal exploration into designing a calm, minimal wallpaper experience. Most wallpaper apps drown users in endless scrolling and cluttered menus, burying the very thing people came for — the visuals. I wanted to flip that: an app where the wallpapers take the spotlight, and the interface gets out of the way. The result is a clean, intuitive browsing experience that feels less like searching and more like discovering.",
     problem:
-      "Traditional e-commerce interfaces prioritize density over experience, creating friction that reduces conversion and brand perception.",
+      "Most wallpaper apps drown users in endless scrolling and cluttered menus, burying the very thing people came for — the visuals.",
     solution:
-      "Created a visually immersive shopping experience with cinematic product presentations, fluid transitions, and a streamlined checkout flow that increased conversion.",
-    images: ["/projects/ecommerce-1.jpg", "/projects/ecommerce-2.jpg"],
+      "A clean, intuitive browsing experience where wallpapers take the spotlight and the interface gets out of the way — discovery over search.",
+    images: [
+      "/screens/Wallify/Wallify%20Home%20Page%20Design%20Portfolio.webp",
+      "/screens/Wallify/Wallpaper%20from%20Design%20Portfolio.webp",
+      "/screens/Wallify/Favourite%20Wallpaper%20from%20Design%20Portfolio.webp",
+      "/screens/Wallify/Favourite%20Wallpaper%20from%20Design%20Portfolio%20%281%29.webp",
+    ],
   },
   {
     slug: "brand-identity",
