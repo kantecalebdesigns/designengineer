@@ -7,7 +7,9 @@ export interface Project {
   tech: string[];
   hero: string;
   heroAspect?: string;
+  heroVideo?: string;
   cardImage?: string;
+  cardVideo?: string;
   overview?: string;
   problem: string;
   research?: string;
@@ -88,20 +90,22 @@ export const projects: Project[] = [
     ],
   },
   {
-    slug: "brand-identity",
-    title: "Brand Identity Platform",
-    category: "Brand",
-    year: "2023",
+    slug: "plug",
+    title: "Plug",
+    category: "Recommendation App",
+    year: "2025",
     description:
-      "A living brand platform that keeps teams aligned on visual identity across every touchpoint.",
-    tech: ["React", "Node.js", "AWS S3", "Figma API"],
-    hero: "/projects/brand.jpg",
-    overview:
-      "A living brand platform that ensures consistency across every touchpoint, from marketing to product interfaces.",
+      "A dedicated space for friend-to-friend recommendations across movies, music, and shows — where the things your people swear by don't get lost in the chat.",
+    tech: ["Figma", "Prototyping", "User Research"],
+    hero: "/screens/Plug/recoomendation%20app%20video.mp4",
+    heroVideo: "/screens/Plug/recoomendation%20app%20video.mp4",
+    cardVideo: "/screens/Plug/recoomendation%20app%20video.mp4",
     problem:
-      "Brand guidelines lived in static PDFs that were outdated the moment they were published. Teams constantly deviated from the intended identity.",
+      "Recommendations between friends already happen constantly — but they live in fragmented places. A movie tip buried in a WhatsApp chat. A song name screenshotted and forgotten. A show someone swore by months ago, lost to the scroll. There's no single place to send, save, and act on the things the people you actually trust are recommending.",
+    research:
+      "I looked at how recommendations move between friends today — group chats, story replies, screenshots, voice notes — and where they break down. The pattern was clear: the sharing part isn't broken, the holding onto it part is. Existing platforms like Letterboxd and Goodreads solve cataloging but not the social handoff. Messaging apps solve the handoff but lose everything in the noise.",
     solution:
-      "Built an interactive, always-up-to-date brand platform with live asset management, usage examples, and direct integration with design tools.",
-    images: ["/projects/brand-1.jpg", "/projects/brand-2.jpg"],
+      "I designed Plug as a dedicated space for friend-to-friend recommendations across movies, music, and shows. Friends send each other recs directly into a personal queue — no scrolling back through chats to find what someone mentioned weeks ago. Each item shows who sent it, when, and a quick note on why. The interface keeps the social signal front and center: you're not browsing a catalog, you're working through what your people think is worth your time.",
+    images: [],
   },
 ];

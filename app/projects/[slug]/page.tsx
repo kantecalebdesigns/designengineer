@@ -117,15 +117,27 @@ export default function ProjectPage() {
             style={{ aspectRatio: project.heroAspect ?? "16 / 9" }}
           >
             <div className="absolute inset-0 animate-pulse bg-gradient-to-br from-[#161616] to-[#0d0d0d]" />
-            <div
-              className="absolute inset-0 bg-[#161616]"
-              style={{
-                backgroundImage: `url(${project.hero})`,
-                backgroundSize: "contain",
-                backgroundPosition: "center",
-                backgroundRepeat: "no-repeat",
-              }}
-            />
+            {project.heroVideo ? (
+              <video
+                src={project.heroVideo}
+                autoPlay
+                muted
+                loop
+                playsInline
+                preload="metadata"
+                className="absolute inset-0 h-full w-full bg-[#161616] object-contain"
+              />
+            ) : (
+              <div
+                className="absolute inset-0 bg-[#161616]"
+                style={{
+                  backgroundImage: `url(${project.hero})`,
+                  backgroundSize: "contain",
+                  backgroundPosition: "center",
+                  backgroundRepeat: "no-repeat",
+                }}
+              />
+            )}
           </div>
         </div>
       </motion.div>

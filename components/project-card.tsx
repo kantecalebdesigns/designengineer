@@ -75,14 +75,26 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
             style={{ clipPath: mask }}
           >
             <div className="absolute inset-0 animate-pulse bg-gradient-to-br from-[#161616] to-[#0d0d0d]" />
-            <div
-              className="absolute inset-0 bg-[#161616] transition-transform duration-700 ease-out group-hover:scale-[1.05]"
-              style={{
-                backgroundImage: `url(${project.cardImage ?? project.hero})`,
-                backgroundSize: "cover",
-                backgroundPosition: "center",
-              }}
-            />
+            {project.cardVideo ? (
+              <video
+                src={project.cardVideo}
+                autoPlay
+                muted
+                loop
+                playsInline
+                preload="metadata"
+                className="absolute inset-0 h-full w-full bg-[#161616] object-cover transition-transform duration-700 ease-out group-hover:scale-[1.05]"
+              />
+            ) : (
+              <div
+                className="absolute inset-0 bg-[#161616] transition-transform duration-700 ease-out group-hover:scale-[1.05]"
+                style={{
+                  backgroundImage: `url(${project.cardImage ?? project.hero})`,
+                  backgroundSize: "cover",
+                  backgroundPosition: "center",
+                }}
+              />
+            )}
             {/* Blue accent line on hover */}
             <div className="absolute bottom-0 left-0 h-[2px] w-0 bg-[#6aafff] transition-all duration-500 group-hover:w-full" />
           </div>

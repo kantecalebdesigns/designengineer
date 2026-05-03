@@ -43,6 +43,7 @@ const screens = [
   { label: "Mobile", image: "/screens/mobile-scroll2.jpg" },
   { label: "Scroll", image: "/screens/scroll-5.jpg" },
   { label: "Scroll", image: "/screens/scroll-6.jpg" },
+  { label: "Tennis", image: "/screens/tennis-screens.png" },
 ];
 
 export function Marquee() {
