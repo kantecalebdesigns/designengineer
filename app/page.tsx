@@ -6,6 +6,7 @@ import { ProjectCard } from "@/components/project-card";
 import { SectionWrapper } from "@/components/section-wrapper";
 import { Footer } from "@/components/footer";
 import { Marquee } from "@/components/marquee";
+import { NowPlaying } from "@/components/now-playing";
 import TextType from "@/components/TextType";
 import { projects } from "@/data/projects";
 
@@ -80,6 +81,18 @@ export default function Home() {
             <p className="mt-1 text-sm font-light leading-relaxed text-[#999]">
               Design systems, spatial UI, and software that feels intentional.
             </p>
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{
+              duration: 1,
+              delay: 0.6,
+              ease: [0.16, 1, 0.3, 1],
+            }}
+            className="mt-6"
+          >
+            <NowPlaying />
           </motion.div>
         </div>
       </section>
