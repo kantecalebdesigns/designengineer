@@ -1,15 +1,24 @@
+export const runtime = "nodejs";
+export const dynamic = "force-dynamic";
+
 const TOKEN_ENDPOINT = "https://accounts.spotify.com/api/token";
 const NOW_PLAYING_ENDPOINT =
   "https://api.spotify.com/v1/me/player/currently-playing";
+const RECENTLY_PLAYED_ENDPOINT =
+  "https://api.spotify.com/v1/me/player/recently-played?limit=1";
 
 type Artist = { name: string };
-type SpotifyTrack = {
+type SpotifyItem = {
+  name: string;
+  artists: Artist[];
+  external_urls?: { spotify?: string };
+};
+type SpotifyNowPlaying = {
   is_playing: boolean;
-  item: {
-    name: string;
-    artists: Artist[];
-    external_urls?: { spotify?: string };
-  } | null;
+  item: SpotifyItem | null;
+};
+type SpotifyRecentlyPlayed = {
+  items: { track: SpotifyItem }[];
 };
 
 async function getAccessToken() {
@@ -39,35 +48,53 @@ async function getAccessToken() {
   return json.access_token ?? null;
 }
 
+function trackPayload(item: SpotifyItem, isPlaying: boolean) {
+  return {
+    isPlaying,
+    title: item.name,
+    artist: item.artists.map((a) => a.name).join(", "),
+    songUrl: item.external_urls?.spotify ?? null,
+  };
+}
+
 export async function GET() {
   const token = await getAccessToken();
   if (!token) {
     return Response.json({ isPlaying: false });
   }
 
-  const res = await fetch(NOW_PLAYING_ENDPOINT, {
+  const nowRes = await fetch(NOW_PLAYING_ENDPOINT, {
     headers: { Authorization: `Bearer ${token}` },
     cache: "no-store",
   });
 
-  if (res.status === 204 || res.status >= 400) {
-    return Response.json({ isPlaying: false });
+  if (nowRes.ok && nowRes.status !== 204) {
+    const data = (await nowRes.json()) as SpotifyNowPlaying;
+    if (data?.item) {
+      return Response.json(trackPayload(data.item, data.is_playing), {
+        headers: {
+          "Cache-Control": "public, s-maxage=30, stale-while-revalidate=60",
+        },
+      });
+    }
   }
 
-  const data = (await res.json()) as SpotifyTrack;
-  if (!data?.item) return Response.json({ isPlaying: false });
+  const recentRes = await fetch(RECENTLY_PLAYED_ENDPOINT, {
+    headers: { Authorization: `Bearer ${token}` },
+    cache: "no-store",
+  });
 
-  return Response.json(
-    {
-      isPlaying: data.is_playing,
-      title: data.item.name,
-      artist: data.item.artists.map((a) => a.name).join(", "),
-      songUrl: data.item.external_urls?.spotify ?? null,
-    },
-    {
-      headers: {
-        "Cache-Control": "public, s-maxage=30, stale-while-revalidate=60",
-      },
-    },
-  );
+  if (recentRes.ok) {
+    const data = (await recentRes.json()) as SpotifyRecentlyPlayed;
+    const track = data?.items?.[0]?.track;
+    if (track) {
+      return Response.json(trackPayload(track, false), {
+        headers: {
+          "Cache-Control": "public, s-maxage=60, stale-while-revalidate=300",
+        },
+      });
+    }
+  }
+
+  return Response.json({ isPlaying: false });
 }

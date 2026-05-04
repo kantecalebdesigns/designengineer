@@ -35,16 +35,23 @@ export function NowPlaying() {
     };
   }, []);
 
-  if (!data?.isPlaying || !data.title) return null;
+  if (!data?.title) return null;
+
+  const label = data.isPlaying ? "Currently listening to:" : "Last played:";
+  const dotClass = data.isPlaying ? "bg-[#6aafff]" : "bg-[#555]";
 
   const inner = (
     <span className="inline-flex flex-wrap items-center gap-x-2 gap-y-1 text-xs">
       <span className="relative flex h-1.5 w-1.5 shrink-0">
-        <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#6aafff] opacity-70" />
-        <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-[#6aafff]" />
+        {data.isPlaying ? (
+          <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#6aafff] opacity-70" />
+        ) : null}
+        <span
+          className={`relative inline-flex h-1.5 w-1.5 rounded-full ${dotClass}`}
+        />
       </span>
       <span className="font-medium uppercase tracking-widest text-[#555]">
-        Currently listening to:
+        {label}
       </span>
       <span className="text-[#ccc]">{data.title}</span>
       <span className="text-[#666]">by {data.artist}</span>
