@@ -66,28 +66,11 @@ export default function Home() {
             </a>
           </motion.div>
           <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{
-              duration: 1,
-              delay: 0.45,
-              ease: [0.16, 1, 0.3, 1],
-            }}
-            className="mt-5 max-w-md border-t border-[#1a1a1a] pt-4"
-          >
-            <p className="text-sm font-light leading-relaxed text-[#bbb]">
-              Quiet interfaces, smooth motion, sharp typography.
-            </p>
-            <p className="mt-1 text-sm font-light leading-relaxed text-[#999]">
-              Design systems, spatial UI, and software that feels intentional.
-            </p>
-          </motion.div>
-          <motion.div
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{
               duration: 1,
-              delay: 0.6,
+              delay: 0.45,
               ease: [0.16, 1, 0.3, 1],
             }}
             className="mt-6"
